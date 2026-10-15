@@ -29,7 +29,7 @@ provider "aws" {
   }
 }
 
-local {
+locals {
   prefix = "${var.prefix}-${terraform.workspace}"
 }
 

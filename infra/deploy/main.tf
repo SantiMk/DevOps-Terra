@@ -33,6 +33,5 @@ locals {
   prefix = "${var.prefix}-${terraform.workspace}"
 }
 
-data "aws-region" "current" {
-  state = "available"
+data "aws_region" "current" {
 }

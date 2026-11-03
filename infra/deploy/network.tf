@@ -26,7 +26,7 @@ resource "aws_subnet" "public_a" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.1.1.0/24"
   map_public_ip_on_launch = true
-  availability_zone       = "${data.aws_region.current.name}a"
+  availability_zone       = "${data.aws_region.current.region}a"
 
   tags = {
     Name = "${local.prefix}-public-a"
@@ -56,7 +56,7 @@ resource "aws_subnet" "public_b" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.1.2.0/24"
   map_public_ip_on_launch = true
-  availability_zone       = "${data.aws_region.current.name}b"
+  availability_zone       = "${data.aws_region.current.region}b"
 
   tags = {
     Name = "${local.prefix}-public-b"
@@ -88,7 +88,7 @@ resource "aws_route" "public_internet_access_b" {
 resource "aws_subnet" "private_a" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.1.10.0/24"
-  availability_zone = "${data.aws_region.current.name}a"
+  availability_zone = "${data.aws_region.current.region}a"
 
   tags = {
     Name = "${local.prefix}-private-a"
@@ -98,7 +98,7 @@ resource "aws_subnet" "private_a" {
 resource "aws_subnet" "private_b" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.1.11.0/24"
-  availability_zone = "${data.aws_region.current.name}b"
+  availability_zone = "${data.aws_region.current.region}b"
 
   tags = {
     Name = "${local.prefix}-private-b"
@@ -124,7 +124,7 @@ resource "aws_security_group" "endpoint_access" {
 
 resource "aws_vpc_endpoint" "ecr" {
   vpc_id              = aws_vpc.main.id
-  service_name        = "com.amazonaws.${data.aws_region.current.name}.ecr.api"
+  service_name        = "com.amazonaws.${data.aws_region.current.region}.ecr.api"
   vpc_endpoint_type   = "Interface"
   private_dns_enabled = true
 
@@ -141,7 +141,7 @@ resource "aws_vpc_endpoint" "ecr" {
 
 resource "aws_vpc_endpoint" "dkr" {
   vpc_id              = aws_vpc.main.id
-  service_name        = "com.amazonaws.${data.aws_region.current.name}.ecr.dkr"
+  service_name        = "com.amazonaws.${data.aws_region.current.region}.ecr.dkr"
   vpc_endpoint_type   = "Interface"
   private_dns_enabled = true
 
@@ -158,7 +158,7 @@ resource "aws_vpc_endpoint" "dkr" {
 
 resource "aws_vpc_endpoint" "cloudwatch_logs" {
   vpc_id              = aws_vpc.main.id
-  service_name        = "com.amazonaws.${data.aws_region.current.name}.logs"
+  service_name        = "com.amazonaws.${data.aws_region.current.region}.logs"
   vpc_endpoint_type   = "Interface"
   private_dns_enabled = true
 
@@ -175,7 +175,7 @@ resource "aws_vpc_endpoint" "cloudwatch_logs" {
 
 resource "aws_vpc_endpoint" "ssm" {
   vpc_id              = aws_vpc.main.id
-  service_name        = "com.amazonaws.${data.aws_region.current.name}.ssmmessages"
+  service_name        = "com.amazonaws.${data.aws_region.current.region}.ssmmessages"
   vpc_endpoint_type   = "Interface"
   private_dns_enabled = true
 
@@ -192,7 +192,7 @@ resource "aws_vpc_endpoint" "ssm" {
 
 resource "aws_vpc_endpoint" "s3" {
   vpc_id            = aws_vpc.main.id
-  service_name      = "com.amazonaws.${data.aws_region.current.name}.s3"
+  service_name      = "com.amazonaws.${data.aws_region.current.region}.s3"
   vpc_endpoint_type = "Gateway"
   route_table_ids = [
     aws_vpc.main.default_route_table_id

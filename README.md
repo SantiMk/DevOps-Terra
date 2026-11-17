@@ -1,7 +1,6 @@
 <div align="center">
-    <a href="https://londonappdeveloper.com" target="_blank">
-        <img src="https://londonappdeveloper.com/wp-content/uploads/2024/11/banner.svg" alt="Banner image" />
-    </a>
+    <img width="1413" height="532" alt="image" src="https://github.com/user-attachments/assets/37725aeb-f88a-4698-bd34-1e256bc647bc" />
+
 </div>
 
 <div align="center">
